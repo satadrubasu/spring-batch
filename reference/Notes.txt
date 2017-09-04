@@ -1,3 +1,6 @@
+
+Project setup java 8
+
 Step1 : Start the spring boot application
   java -jar target/myproject-0.0.1-SNAPSHOT.jar
   
