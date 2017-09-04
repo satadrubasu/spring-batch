@@ -23,3 +23,6 @@
 # Logs and databases #
 ######################
 *.log
+
+.project
+.classpath
