@@ -1,0 +1,48 @@
+Step1 : Start the spring boot application
+  java -jar target/myproject-0.0.1-SNAPSHOT.jar
+  
+  It is also possible to run a packaged application with remote debugging support enabled. This allows you to attach a debugger to your packaged application:
+  $ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \
+       -jar target/myproject-0.0.1-SNAPSHOT.jar
+
+Step 2 : hit the API endpoint to trigger the batch application  
+  http://localhost:8080/triggerBaseExampleJob
+  
+Step 3 :
+  check the application.properties for correct datasource config.
+  
+  
+ ----------------
+  OTHER NOTES.
+ ----------------
+ 
+ Issue1:
+ SpringBoot developers recommend to locate your main application class in a root package above other classes. Using a root package also allows the @ComponentScan annotation to be used without needing to specify a basePackage attribute. Detailed info But be sure that the custom root package exists.
+ Method 1)Place the bootup application at start of the package structure and rest all controller inside it Example : package com.spring.boot.app; - You bootup application(i.e. Main Method -SpringApplication.run(App.class, args);)
+
+1.Spring Boot Application.properties
+  https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html
+  
+2. spring boot logging
+   https://howtodoinjava.com/spring/spring-boot/logging-application-properties/
+
+3. Spring applicatino.properties - reference
+   https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+    
+4. Biblio
+   http://www.javainuse.com/spring/bootbatch
+   http://www.javainuse.com/spring/batchtaskchunk
+   
+   
+   Note that only one of your configuration classes needs to have the @EnableBatchProcessing annotation. Once you have an @EnableBatchProcessing class in your configuration you will have an instance of StepScope so your beans inside steps can have @Scope("step"). You will also be able to @Autowired some useful stuff into your context:
+
+    a JobRepository (bean name "jobRepository")
+    a JobLauncher (bean name "jobLauncher")
+    a JobRegistry (bean name "jobRegistry")
+    a PlatformTransactionManager (bean name "transactionManager")
+    a JobBuilderFactory (bean name "jobBuilders") as a convenience to prevent you from having to inject the job repository into every job, as in the examples above
+    a StepBuilderFactory (bean name "stepBuilders") as a convenience to prevent you from having to inject the job repository and transaction manager into every step
+   
+   
+   
+   
