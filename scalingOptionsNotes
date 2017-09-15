@@ -1,0 +1,15 @@
+For Batch processing consider the following options depending on the use case.
+
+1. Single Process
+    a) Multi Threaded Steps
+    b) Parallel Steps  ( where each step processing doesnt impact the other step )
+    c) Local Partitioning
+2. Multi Process
+    a) Remote Chunking - a little complex to setup
+    b) Remote Partitioning 
+3. Asynchronus Item processing support
+   a) AsyncItemProcessor  ( wraps the ItemProcessor like a Future task etc)
+   b) AsyncItemWriter
+   
+ In my use case lets work on a Single Process ( personal development )
+ 
