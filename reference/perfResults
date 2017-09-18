@@ -1,0 +1,15 @@
+Environment - my localmachine
+ Spec - 8 GB RAM
+ Windows 10
+
+
+Use Case:
+ ReadItem table populated with 10000000 records ( 10 million records )
+ WriteItem table is completely empty and the batch is triggered.
+ 
+ 1. Commit interval = 1000
+     Batch Execution tie= 3 mins 31seconds.
+     Originally WriteItem table was all blank.
+     Delete query to clean up table took - 1:17 seconds  
+ 2.
+ 
