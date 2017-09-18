@@ -21,6 +21,9 @@ public class JobLauncherController {
     Job baseExampleJob;
     
     @Autowired
+    Job dbReadExampleJob;
+    
+    @Autowired
     JobLauncher jobLauncher;
  
  
@@ -37,5 +40,20 @@ public class JobLauncherController {
             jobLauncher.run(baseExampleJob, jobParameters);
              
         return "Batch job has been invoked";
+    }
+    
+    /**
+     * @return
+     * @throws Exception
+     *  http://localhost:8080/triggerBaseExampleJob
+     */
+    @RequestMapping("/triggerDBReadWriteExampleJob")
+    public String handleDBReadWrite() throws Exception {
+ 
+            JobParameters jobParameters = new JobParametersBuilder().addLong("time", System.currentTimeMillis())
+                    .toJobParameters();
+            jobLauncher.run(dbReadExampleJob, jobParameters);
+             
+        return "Batch job for DBRead Write has been invoked";
     }
 }

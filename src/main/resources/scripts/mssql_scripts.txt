@@ -1,0 +1,38 @@
+-- MSSQL server commands --
+
+CREATE TABLE ReadItem
+(
+            ID int IDENTITY(1,1) PRIMARY KEY,
+            ItemName VARCHAR(10),
+            ItemNumber bigint,
+            ItemGroupId bigint
+)
+
+-------
+
+CREATE TABLE WriteItem
+(
+            ItemName VARCHAR(10),
+			ItemAlias VARCHAR(10),
+            ItemNumber bigint,
+            ItemGroupId bigint
+)
+
+-------
+
+Create Procedure Insert_ToReadItem
+ As
+  DECLARE @i bigint 
+  SET @i = 1
+ WHILE(@i <= 10000000)
+ BEGIN
+  INSERT INTO ReadItem( ItemName,ItemNumber,ItemGroupNId )
+      Values ('BulkInsert',@i,@i)
+   SET @i = @i + 1
+ END
+ Go
+ ----------
+ Execution took 1 hr 1 min to finish executing
+ ----------
+ 
+ 

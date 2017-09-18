@@ -1,0 +1,13 @@
+https://medium.com/@joeclever/using-multiple-datasources-with-spring-boot-and-spring-data-6430b00c02e7
+
+;
+  https://www.petrikainulainen.net/programming/spring-framework/spring-batch-tutorial-reading-information-from-a-database/
+  
+  Dont load large datasets
+    This configuration reads all rows found from the students table into memory. We use this configuration because the students table has only three rows.
+If you are dealing with large datasets, you probably don’t want to read the entire ResultSet into memory. If this is the case, you must limit the number of rows that are fetched from the database when more rows are needed. You can do this by invoking the setFetchSize() method of the AbstractCursorItemReader class.
+
+
+
+https://docs.spring.io/spring-batch/reference/htmlsingle/#cursorBasedItemReaders
+
