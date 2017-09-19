@@ -26,7 +26,7 @@ Create Procedure Insert_ToReadItem
   SET @i = 1
  WHILE(@i <= 10000000)
  BEGIN
-  INSERT INTO ReadItem( ItemName,ItemNumber,ItemGroupNId )
+  INSERT INTO ReadItem( ItemName,ItemNumber,ItemGroupId )
       Values ('BulkInsert',@i,@i)
    SET @i = @i + 1
  END
