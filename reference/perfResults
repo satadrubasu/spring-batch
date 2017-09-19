@@ -11,5 +11,8 @@ Use Case:
      Batch Execution tie= 3 mins 31seconds.
      Originally WriteItem table was all blank.
      Delete query to clean up table took - 1:17 seconds  
- 2.
+ 2.  Commit interval = 5000
+     Batch Execution tie= 2 mins 17 seconds.
+     Originally WriteItem table was all blank.
+     Delete query to clean up table took -   
  
