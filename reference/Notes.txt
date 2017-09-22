@@ -45,4 +45,7 @@ Step 3 :
     a JobBuilderFactory (bean name "jobBuilders") as a convenience to prevent you from having to inject the job repository into every job, as in the examples above
     a StepBuilderFactory (bean name "stepBuilders") as a convenience to prevent you from having to inject the job repository and transaction manager into every step
    
+  ====
+  https://docs.spring.io/spring-batch/reference/html/configureStep.html#interceptingStepExecution
+  
   

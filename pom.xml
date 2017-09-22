@@ -19,41 +19,50 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter</artifactId>
+		<!-- Satadru : note removed this to add the log4j2 separately below -->
+		<exclusions>
+			<exclusion>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-logging</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-log4j2</artifactId>
+	</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-batch</artifactId>
-		</dependency>
-		
-	<!-- removed the default dependency of springboot on h2 and pointed to mssql server below
-	     <dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-batch</artifactId>
+	</dependency>
+
+	<!-- removed the default dependency of springboot on h2 and pointed to mssql 
+		server below <dependency> <groupId>com.h2database</groupId> <artifactId>h2</artifactId> 
 		</dependency> -->
 
-       <!-- Added the following ssql server driver dependency - observe the application.properties -->
-	     <dependency>
-	    	<groupId>com.microsoft.sqlserver</groupId>
-		    <artifactId>mssql-jdbc</artifactId>
-	    	<version>6.1.0.jre8</version>
-	     </dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
+	<!-- Added the following ssql server driver dependency - observe the application.properties -->
+	<dependency>
+		<groupId>com.microsoft.sqlserver</groupId>
+		<artifactId>mssql-jdbc</artifactId>
+		<version>6.1.0.jre8</version>
+	</dependency>
 
-	</dependencies>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-devtools</artifactId>
+		<optional>true</optional>
+	</dependency>
+
+</dependencies>
 
 	<build>
 		<plugins>

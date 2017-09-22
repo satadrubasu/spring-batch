@@ -1,6 +1,5 @@
 package com.batch.config;
 
-
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
@@ -9,6 +8,8 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.step.tasklet.Tasklet;
+import org.springframework.batch.core.step.tasklet.TaskletStep;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
@@ -26,6 +27,7 @@ import com.batch.dto.ReadItemDTO;
 import com.batch.dto.WriteItemDTO;
 import com.batch.listener.BaseBatchJobListener;
 import com.batch.step.DBItemProcessor;
+import com.batch.tasklet.LoadDataTasklet;
  
 @Configuration
 public class DatabaseBatchJobConfig  {
@@ -37,27 +39,34 @@ public class DatabaseBatchJobConfig  {
 	@Autowired
 	public StepBuilderFactory stepBuilderFactory;
 	
-/*	@Autowired
-	public DataSource datasource;*/
-
-    private static final String QUERY_ITEM =
-            "SELECT " +
-                "ID, " +
-                "ItemName, " +
-                "ItemNumber " +
-            "FROM ReadItem ";
+    private static final String QUERY_ITEM = "SELECT ID,ItemName,ItemNumber FROM ReadItem ";
            // "ORDER BY email_address ASC";
  
+    
+    //--------------------------------- Definition of different Jobs ------------------
+    
 	@Bean
 	public Job dbReadExampleJob() {
 		return jobBuilderFactory.get("dbReadExampleJob")
 				.incrementer(new RunIdIncrementer()).listener(listener())
 				.flow(dbReadWriteExampleJobStep()).end().build();
 	}
-
+	
 	/**
-	 * Observe that when the chunk(4) -- resulted in a commit count of 1 with data row of 3
-	 *     however when the chunk(1) -- resulted in a commit count of 4 with data row of 3
+	 * simpleSPCalljob -- to test two use cases when the SP is not present vs when the SP is present
+	 * @return
+	 */
+	@Bean
+    public Job simpleSPCalljob() {
+        return jobBuilderFactory.get("simpleSPCalljob")
+                .incrementer(new RunIdIncrementer())
+                .start(dbCallSPTaskletExample()).build();
+    }
+
+	// ---------------------- End of Job Definitions -----------------
+	// Definition of different Steps
+	/**
+	 * In this class we are configuring two readers :
 	 * @return
 	 */
 	@Bean
@@ -67,6 +76,14 @@ public class DatabaseBatchJobConfig  {
 				.processor(databaseItemProcessor())
 				.writer(databaseItemwriter(dataSource())).build();
 	}
+	
+    @Bean
+	public Step dbCallSPTaskletExample() {
+	        return stepBuilderFactory.get("dbCallSPTaskletExample")
+	        		.tasklet(getloadDataTasklet())
+	                .build();
+	    }
+	
 	
     @Bean
     ItemReader<ReadItemDTO> databaseItemReader(DataSource dataSource) {
@@ -125,5 +142,12 @@ public class DatabaseBatchJobConfig  {
 	    return DataSourceBuilder
 	        .create()
 	        .build();
+	}
+	
+	
+	@Bean
+	public Tasklet getloadDataTasklet()
+	{
+		return new LoadDataTasklet();
 	}
 }

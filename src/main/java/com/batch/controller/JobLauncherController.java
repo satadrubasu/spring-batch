@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class JobLauncherController {
  
-    @Autowired
-    Job baseExampleJob;
+/*   @Autowired
+    Job baseExampleJob;*/
     
     @Autowired
     Job dbReadExampleJob;
+    
+    @Autowired
+    Job simpleSPCalljob;
     
     @Autowired
     JobLauncher jobLauncher;
@@ -32,7 +35,7 @@ public class JobLauncherController {
      * @throws Exception
      *  http://localhost:8080/triggerBaseExampleJob
      */
-    @RequestMapping("/triggerBaseExampleJob")
+/*    @RequestMapping("/triggerBaseExampleJob")
     public String handle() throws Exception {
  
             JobParameters jobParameters = new JobParametersBuilder().addLong("time", System.currentTimeMillis())
@@ -40,7 +43,7 @@ public class JobLauncherController {
             jobLauncher.run(baseExampleJob, jobParameters);
              
         return "Batch job has been invoked";
-    }
+    }*/
     
     /**
      * @return
@@ -55,5 +58,20 @@ public class JobLauncherController {
             jobLauncher.run(dbReadExampleJob, jobParameters);
              
         return "Batch job for DBRead Write has been invoked";
+    }
+    
+    /**
+     * @return
+     * @throws Exception
+     *  http://localhost:8080/spCallLoad1000
+     */
+    @RequestMapping("/spCallLoad1000")
+    public String handleSimpleSPCall() throws Exception {
+ 
+            JobParameters jobParameters = new JobParametersBuilder().addLong("time", System.currentTimeMillis())
+                    .toJobParameters();
+            jobLauncher.run(simpleSPCalljob, jobParameters);
+             
+        return "Batch job to Trigger SP is triggered - check ReadItem table for entries with ItemName like Test1000";
     }
 }

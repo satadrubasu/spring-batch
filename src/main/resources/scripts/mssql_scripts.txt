@@ -36,3 +36,23 @@ Create Procedure Insert_ToReadItem
  ----------
  
  
+ 
+ ==== The following procedure used for demonstrating call of a SP which inserts 1000 rows but after a delay of 10 seconds ==
+ 
+ Create Procedure LoadTestDataSP1000
+ As
+  DECLARE @i bigint 
+  SET @i = 1
+  WAITFOR DELAY '00:00:10';
+ WHILE(@i <= 1000)
+ BEGIN
+  INSERT INTO ReadItem( ItemName,ItemNumber,ItemGroupId )
+      Values ('TestData1000',@i,@i)
+   SET @i = @i + 1
+ END
+ Go
+ 
+ =================================
+ 
+ 
+ 
