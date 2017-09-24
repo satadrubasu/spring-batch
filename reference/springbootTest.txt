@@ -1,0 +1,46 @@
+1.Include dependency 
+  
+  spring-boot-starter-test
+     will include the following
+    a)  junit
+    b) Hamcrest - Matching and assertions
+    c) Mockito - Mock Objects and verify
+    d) Spring Test - testing tools and integration support
+       includes annotation
+       
+===== Hamcrest -- syntactical verify 
+
+   assertEquals(1L,data.getId().longValue() // general junit
+      vs
+   assertThat(data.getId() , is(1l))  // hamcrest
+   
+   
+======= Integration test challenges =============
+ Need of the Spring Context and container
+ 
+ Converting Junit tests to Spring integration tests
+ 
+ @RunWith(SpringJUnit4ClassRunner.class))
+ @SpringApplicationConfiguration
+ 
+ 
+ Steps to upgrade a junit to integration test [  but flip side is it really booths the spring applicatio for the tests
+ hence not recommended for very complex project as it may take time ]
+  The biggest advantage being since the app loads it actually provides all the beans and enables testing like in a runtime environment
+ 
+ 
+  @RunWith(SpringJUnit4ClassRunner.class))
+ @SpringApplicationConfiguration(App.class) // supply the main class which the boot uses.
+ public class RepoIntegrationTest {
+ 
+  @Autowired
+  private MyRepo repo;
+ 
+   @Test
+   public void testGet() {
+   
+   }
+ 
+ }
+ 
+ 

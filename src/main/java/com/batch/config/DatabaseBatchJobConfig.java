@@ -139,9 +139,7 @@ public class DatabaseBatchJobConfig  {
 	@Bean
 	@Primary
 	public DataSource dataSource() {
-	    return DataSourceBuilder
-	        .create()
-	        .build();
+	    return DataSourceBuilder.create().build();
 	}
 	
 	

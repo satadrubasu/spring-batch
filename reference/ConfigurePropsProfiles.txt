@@ -1,0 +1,23 @@
+1. By Default the Spring boot will use the application.properties placed in the classpath
+   As its a maven project -> src/main/resources
+   
+2. profile based properties
+     appliaction-{profile}.properties  will load all values from the default appliactino.properties first 
+      and override with all additional values in the profile file
+      
+     application-dev.peroperties
+     application-prod.properties
+3. To start the boot application with a specific profile
+    under the VM args we need to provide 
+        -Dspring.profiles.active=production
+        -Dspring.profiles.active=dev,hsqldb
+    
+    
+    
+    
+ ==== COnfiguration available based on profile =====
+ 
+ Any @Component or @Configuration can be marked with @Profile to limit when it is loaded:
+ @Configuration
+ @Profile("production")  // this will need the -D parameter for the active profile to be 'production'
+ public class ProductionConfiguration {

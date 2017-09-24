@@ -43,6 +43,7 @@ public class LoadDataTasklet implements Tasklet {
 		logger.info(" #Stored Procedure to load 1000 rows data called at " + 
 				new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()));
 		
+		
 		JdbcTemplate jdbcTemplate =new JdbcTemplate(getDataSource());
 		try {
 			jdbcTemplate.execute(sql);
@@ -53,8 +54,11 @@ public class LoadDataTasklet implements Tasklet {
 		}
 		logger.info(" #Stored Procedure to load 1000 rows data returned at " + 
 				new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()));
+		
         return RepeatStatus.FINISHED;
 	}
+	
+	
 
 	public DataSource getDataSource() {
 		return dataSource;

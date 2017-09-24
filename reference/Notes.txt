@@ -49,3 +49,18 @@ Step 3 :
   https://docs.spring.io/spring-batch/reference/html/configureStep.html#interceptingStepExecution
   
   
+  =======================================
+  Other layers worth implementation
+  
+  1. Metrics : Spring Boot Actuator: Production-ready features
+     https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html
+     
+  2. Health Endpoints :
+    https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
+    
+  3. Process Monitoring
+    https://www.youtube.com/watch?v=71UFLAVXgq0  
+     
+     
+  
+  

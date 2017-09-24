@@ -47,7 +47,7 @@ Create Procedure Insert_ToReadItem
  WHILE(@i <= 1000)
  BEGIN
   INSERT INTO ReadItem( ItemName,ItemNumber,ItemGroupId )
-      Values ('TestData1000',@i,@i)
+      Values ('Test1000',@i,@i)
    SET @i = @i + 1
  END
  Go
