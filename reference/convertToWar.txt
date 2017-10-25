@@ -1,0 +1,4 @@
+https://www.youtube.com/watch?v=92ceKwUZoA0
+http://therealdanvega.com/blog/2017/06/28/deploying-war-application-server-spring-boot
+
+to convert from jar to war
